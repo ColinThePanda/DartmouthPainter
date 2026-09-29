@@ -1,0 +1,7 @@
+.{
+    .name = .zopencv,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.16.0-dev.2510+bcb5218a2",
+    .paths = .{""},
+    .fingerprint = 0x6c03002d8dfdfc34,
+}
