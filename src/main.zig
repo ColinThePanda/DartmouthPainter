@@ -51,6 +51,10 @@ fn getLargestRegion(buf: [*]u8, width: usize, height: usize, tol: usize, target_
     var current: std.ArrayList(usize) = .empty;
     region.clearRetainingCapacity();
 
+    defer current.deinit(allocator);
+    defer queue.deinit(allocator);
+    defer allocator.free(visited);
+
     for (0..height) |sy| {
         for (0..width) |sx| {
             const seed_off = sy * width + sx;
@@ -91,10 +95,6 @@ fn getLargestRegion(buf: [*]u8, width: usize, height: usize, tol: usize, target_
             }
         }
     }
-
-    current.deinit(allocator);
-    queue.deinit(allocator);
-    allocator.free(visited);
 }
 
 pub fn main(init: std.process.Init) !void {
